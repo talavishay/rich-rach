@@ -55,5 +55,5 @@ jQuery('body:not(.ie) #zone-header').css('position','relative').append('<div id=
  jQuery('body.node-type-recommend #overlay').css("background","url(/sites/all/modules/overlay/recommend.SCREEN-SHOT.png)");
  jQuery('body.recommend #overlay').css("background","url(/sites/all/modules/overlay/recommend.png)");
  jQuery('body.node-type-birthday #overlay').css("background","url(/sites/all/modules/overlay/pageinbrithedays-block-menu-menu-select.png)");
-// 
+ jQuery('body.node-type-blog #overlay').css("background","url(/sites/all/modules/overlay/blog-screenshot.jpg)");
 });
