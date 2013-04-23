@@ -1495,6 +1495,12 @@ width: 140px;
 .node-type-blog .submitted {
     margin: 50px 0 30px;
 }
-#edit-field-blog-sub.form-wrapper{
-    float:left;
+#edit-field-blog-sub.form-wrapper {
+  float: left;
+  width: auto;
+}
+#blog-node-form .form-item-title{
+position: absolute;
+right: 0;
+width: 50%;
 }
