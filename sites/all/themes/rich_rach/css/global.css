@@ -1387,4 +1387,11 @@ width: 292px;
 
 .views-exposed-form .views-exposed-widget {
   padding:  0 ;
+
+}
+/*  blog : info block */
+#block-block-6 a:link,
+#block-block-6 a:visited{
+    color: inherit;
+    text-decoration: inherit;
 }
