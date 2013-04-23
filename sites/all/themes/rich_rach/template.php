@@ -40,8 +40,15 @@ function rich_rach_alpha_process_zone(&$vars) {
         
     }
 }
-    
+
+function rich_rach_css_alter(&$css){
+    if($_GET["q"] === "בלוג"){
+        unset($css['sites/all/themes/omega/omega/css/omega-visuals.css']);
+    }
+}
+
 function rich_rach_preprocess_page(){
+    
     if(drupal_is_front_page()){
         drupal_add_js(                    '(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s);js.id = id;  js.src = "//connect.facebook.net/he_IL/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"))',  array('type' => 'inline', 'scope' => 'header', 'weight' => 5));            
     }

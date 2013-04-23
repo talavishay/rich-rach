@@ -1,8 +1,5 @@
 <div<?php print $attributes; ?>>
   <?php print $user_picture; ?>
-  <?php if ($display_submitted): ?>
-  <div class="submitted"><?php print $date; ?> -- <?php print $name; ?></div>
-  <?php endif; ?>  
   
   <div<?php print $content_attributes; ?>>
             
@@ -15,6 +12,9 @@
                 <?php
                 print render($content);
               ?>
+                <?php if ($display_submitted): ?>
+                    <div class="submitted">נכתב ע"י <?php print $name; ?>  <?php print $date; ?></div>
+                <?php endif; ?>  
 </div>
   
   <div class="clearfix">

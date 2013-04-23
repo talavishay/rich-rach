@@ -126,6 +126,9 @@ if(jQuery("body.front").length === 0){
     });
 }
 
+
+jQuery('#views-exposed-form-recomondations-blog-page select  option:first-child').text(jQuery('#views-exposed-form-recomondations-blog-page label').text())
+
 // get current node image slideshow 
 if(typeof(Drupal.settings.nid) !== "undefined"){
     // ####    Drupal ajax method
