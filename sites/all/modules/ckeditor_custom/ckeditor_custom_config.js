@@ -3,7 +3,10 @@ Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 
-CKEDITOR.config.fontSize_sizes =    '16 פיקסל/16px;'+
+CKEDITOR.config.fontSize_sizes ='12 פיקסל/12px;'        +
+'13 פיקסל/13px;'+
+'14 פיקסל/14px;'+
+'16 פיקסל/16px;'+
                                     '18 פיקסל/18px;'+
                                     '20 פיקסל/20px;'+
                                     '22 פיקסל/22px;'+
