@@ -1142,7 +1142,7 @@ display: inline;
     float: right;
         margin-bottom: 0.5em;
 }
-.node-type-webform .form-item label{
+.node .node-type-webform .form-item label{
     float: right;
     width:8.3em;
 }
@@ -1481,6 +1481,7 @@ width: 140px;
     color: rgb(6, 33, 37);
     padding: 12px 10px;
     font-size:120%;
+    line-height: 135%;
 }
 .view-display-id-blog_page.view-recomondations .item-list a:link,
 .view-display-id-blog_page.view-recomondations .item-list a:visited {
