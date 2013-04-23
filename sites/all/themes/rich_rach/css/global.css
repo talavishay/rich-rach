@@ -1415,6 +1415,7 @@ font-size: 15px;
 margin-bottom: 12px;
 word-spacing: -2px;
 }
+#block-webform-client-block-55 #webform-component-email input,
 #block-webform-client-block-55 #webform-component-mail input{
 border: medium none;
 height: 26px;
