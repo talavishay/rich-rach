@@ -1,0 +1,42 @@
+body.node-type-food aside h2.block-title,
+#main_menu_food, .blue{    
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdJREFUeNpikFt/8R4TAwODIohgoBLBxM7BwPT9xVMGahqKhQAIMAAaQgW97MeF8QAAAABJRU5ErkJggg==") !important;
+}
+
+#main_menu_recommend, .green{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdJREFUeNpiyNvGsZiJgYEhBkQwUIlg42BhYHr76A8DNQ3FQgAEGADJaQVT7+PREAAAAABJRU5ErkJggg==") !important;
+}
+body.node-type-camp aside h2.block-title,
+#main_menu_camp, .orange{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpieJNldI/pP/NVRSYGIKASwcTBy8D07PV7BmoaioUACDAAXTMHgMGuMWMAAAAASUVORK5CYII=") !important;
+}
+body.page-node-1 aside h2.block-title,
+body.contact aside h2.block-title,
+#main_menu_contact, .purple{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdJREFUeNpiqLO5sZiJgYEhBkQwUIlgY2VnYHrx6hkDNQ3FQgAEGAAMaAWmRxaUpwAAAABJRU5ErkJggg==);
+}
+
+#main_menu_blog, .yellow{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdJREFUeNpieLtX5B4TAwODIohgoBLBysrCwPTu/VcGahqKhQAIMAA3YwXoo6JURAAAAABJRU5ErkJggg==") !important;
+
+}
+body.node-type-brithday  aside #block-menu-menu-birthday h2.block-title,
+#main_menu_birthday, .pink{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAYAAAAFvPEHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpifJe0cjHja/aK/0wMQEAlgo2Tg4HpHcM3BmoaioUACDAAgAcHSxIVZcoAAAAASUVORK5CYII=") !important;
+    
+}
+.contact .webform-component.webform-component-textarea,
+.contact #webform-component-mesage {
+    width: 110% !important  ;
+}
+.contact #webform-component-mesage textarea{
+    width: 30.5em ;
+}
+
+#block-views-829a587528abfc530ad5f75cdeaaf250{
+    background-image: url('../img/ie_rgba(0_0_0_75).png');
+}
+
+.front .views-slideshow-cycle-main-frame{
+    border:none !important;
+}
