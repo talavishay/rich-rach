@@ -1,0 +1,8 @@
+name = laxo_biblio_solr
+description = Adds custom Search API fields to index.
+core = 7.x
+
+;scripts[] = js/avishay.js
+
+;stylesheets[all][] = css/avishay.css
+

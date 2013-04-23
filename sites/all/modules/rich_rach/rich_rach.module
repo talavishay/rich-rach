@@ -1,0 +1,78 @@
+<?php
+function rich_rach_views_pre_render(&$view) {
+    if (isset($view) && arg(0) != 'admin') {
+    if ($view->name === "recomondations"){}
+    }
+}
+function rich_rach_menu(){
+    $items["get_slides/%"] = array(
+        'page callback' => 'get_slides',
+        'access callback' => 1,
+        'page arguments' => array(1),
+        'type' => MENU_CALLBACK,
+        'delivery callback' => 'ajax_deliver',
+    );
+     
+    return $items;
+}
+function rich_rach_node_view_alter(&$build){
+    drupal_add_library('system', 'drupal.ajax');            
+    $build=$build;
+    $nid= $build["#node"]->nid;
+    $type = gettype(intval($nid));
+    if( $type === "integer"){
+        drupal_add_js(array('nid' => $nid), 'setting');
+    }
+}
+function get_slides($nid){
+        $slides = views_embed_view('nid_field_image_slideshow','block_1', $nid);
+        return array(
+            '#type' => 'ajax',
+            '#commands' => array(
+                ajax_command_replace('.view-nid-field-image-slideshow', $slides),
+                array('command' => 'after_slides_refresh', 'data'=>'none'),
+        ));
+}
+function rich_rach_module_implements_alter(&$implementations, $hook) {
+//    drupal_set_message($hook);
+    if ( ($hook == 'js_alter' && isset($implementations['rich_rach']))  ) {
+        $group = $implementations['rich_rach'];
+        unset($implementations['rich_rach']);
+        $implementations['rich_rach'] = $group;
+    }
+}
+function rich_rach_csss_alter($css ){
+    $k=0;    
+}
+//
+//function rich_rach_js_alter($javascript ){
+//
+//    $arg = arg();
+//    if($arg[0] === "node"&& $arg[1] === "28"){
+//         $exclude = array(
+//            'misc/textarea.js' => FALSE,
+//            );
+//        $javascript = array_diff_key($javascript, $exclude);
+//    }
+//}
+function rich_rach_preprocess_node(&$variables) {
+if ($variables['type'] ===  'birthday' ) {
+$blocks = Array();
+$tax = taxonomy_get_tree(1);// 1 = choose birthday by  tax ID
+foreach ($tax as $key => $value) {
+    $views_get_view = views_get_view_result('taxonomy_term', 'embed_1', $value->tid);        
+    $blocks[$value->tid] = '<div class="view-taxonomy-term taxonomy-term-'.$value->tid.'" id="block-views-taxonomy-term-block-'.$value->tid.'"><div class="view-content"><ul class="menu">';
+            $nodes = Array(); 
+    foreach($views_get_view as $k => $node){
+        
+        $arr = in_array($node->nid, $nodes);
+        if(!$arr){
+            $blocks[$value->tid] .= '<li class="leaf"><a href="/node/'.$node->nid.'#taxonomy=taxonomy-term-'.$value->tid.'">'.$node->node_title.'</a></li>';
+            $nodes[] = $node->nid;            
+        }
+    }
+    $blocks[$value->tid] .= '</ul></div></div>';
+}
+drupal_add_js(array(        'views_get_view' => $blocks), 'setting');    
+}
+}    
