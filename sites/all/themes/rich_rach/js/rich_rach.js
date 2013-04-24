@@ -5,17 +5,23 @@ if(typeof(Drupal.settings.views_get_view) !== "undefined"){
 jQuery.each(Drupal.settings.views_get_view, function(key, val){    
     jQuery("#block-menu-menu-birthday .block-inner .content").append(jQuery(val).hide());
 });
-
+// Insert the taxonomy menu after the (regular) menu
+if(typeof(Drupal.settings.views_get_view_parent) !== "undefined"){
+    var tax_menu =  jQuery(Drupal.settings.views_get_view_parent);
+    jQuery("#block-menu-menu-select .block-inner > .content, aside .view-taxonomy-term", tax_menu).hide();
+    jQuery('aside > .region-inner #block-menu-menu-birthday').after(tax_menu);
+}
 jQuery('#block-menu-menu-select .block-inner > .content a').each(function(i, val){
     jQuery(val).bind("click", function(e) {
         e.preventDefault();
         jQuery(" section#block-menu-menu-birthday > div.block-inner > div.content > ul.menu").hide();
-        var current_link = jQuery(e.currentTarget).attr("href").replace(/\//i, "").replace(/\//g, "-");
-        var  class_name = "."+ current_link;
+        var current_link_id = jQuery(e.currentTarget).attr("data");
+        var  current_id = "#"+ current_link_id;
 
         jQuery("aside .view-taxonomy-term").hide();
         jQuery('#block-menu-menu-select .block-inner > .content').hide();
-        jQuery(class_name).show().parents(".block-views").show();
+        jQuery(current_id).show().parents(".block-views").show();
+        
         return false;
     });
 });

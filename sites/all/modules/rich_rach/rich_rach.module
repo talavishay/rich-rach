@@ -58,21 +58,35 @@ function rich_rach_csss_alter($css ){
 function rich_rach_preprocess_node(&$variables) {
 if ($variables['type'] ===  'birthday' ) {
 $blocks = Array();
-$tax = taxonomy_get_tree(1);// 1 = choose birthday by  tax ID
+
+$tax = taxonomy_get_tree(1);// 1 = choose term by  tax ID
+
+$parent_menu = '<section id="block-menu-menu-select" class="block block-menu block-menu-select block-menu-menu-select odd"><div class="block-inner clearfix"><h2 class="block-title">חפשו יום הולדת לפי<span id="block-menu-menu-select_toggle"></span></h2><div class="content clearfix"><ul class="menu">';
 foreach ($tax as $key => $value) {
+    // build all sub-menus
     $views_get_view = views_get_view_result('taxonomy_term', 'embed_1', $value->tid);        
-    $blocks[$value->tid] = '<div class="view-taxonomy-term taxonomy-term-'.$value->tid.'" id="block-views-taxonomy-term-block-'.$value->tid.'"><div class="view-content"><ul class="menu">';
+    $blocks[$value->tid] = '<div class="view-taxonomy-term taxonomy-term-'.$value->tid.'" id="block-views-taxonomy-term-block-'.$value->tid.'"><div class="view-content"><ul class="menu" >';
             $nodes = Array(); 
     foreach($views_get_view as $k => $node){
         
         $arr = in_array($node->nid, $nodes);
         if(!$arr){
-            $blocks[$value->tid] .= '<li class="leaf"><a href="/node/'.$node->nid.'#taxonomy=taxonomy-term-'.$value->tid.'">'.$node->node_title.'</a></li>';
+            $blocks[$value->tid] .= '<li class="leaf"><a id="taxonomy-term-'.$value->tid.'" href="/node/'.$node->nid.'#taxonomy=taxonomy-term-'.$value->tid.'">'.$node->node_title.'</a></li>';
             $nodes[] = $node->nid;            
         }
     }
     $blocks[$value->tid] .= '</ul></div></div>';
+    
+    //build the parent menu
+    
+    
+    $parent_menu .= '<li class="leaf"><a data="block-views-taxonomy-term-block-'.$value->tid.'" href="#">'.$value->name.'</a></li>';
 }
-drupal_add_js(array(        'views_get_view' => $blocks), 'setting');    
+$parent_menu .= '</ul></div></div></section>';
+drupal_add_js(array(        'views_get_view' => $blocks, 'views_get_view_parent' => $parent_menu ), 'setting');    
 }
 }    
+
+function rich_rach_menu_alter(&$menu){
+    $menu = $menu;
+}
