@@ -201,7 +201,9 @@ body.node-type-camp #zone-content-wrapper {
     border-top: 1px solid rgb(235, 7, 120);
     background: none repeat scroll 0 0 rgb(161,201,205);    
 }
-
+#zone-footer-bottom #block-block-4{
+    width: 960px;
+}
 .zone {
     border-left: 1px solid rgb(161, 201, 205) !important;
     border-right: 1px solid rgb(161, 201, 205) !important;
