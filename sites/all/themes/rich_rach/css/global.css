@@ -1,3 +1,6 @@
+
+
+
 /*@font-face {
     font-family: 'RaananSuperBlack';
     src: url('../fonts/raanasuperblack.eot');
@@ -1135,6 +1138,7 @@ display: inline;
 .node-type-webform .webform-client-form label {
     font-family: arial;
     font-weight: normal;
+    float: right;
 }
 .node-type-webform .form-actions ,
 .node-type-webform .form-item {
@@ -1147,17 +1151,24 @@ display: inline;
     width:8.3em;
 }
 .node-type-webform .content  .form-item input {
-    float: right;
-    /*margin-left: 320px;*/
+    float: left;
+margin-left: 135px;
     width: 264px;
+}
+
+.contact aside h2.block-title,
+.node-type-webform aside h2.block-title{
+    display: none;
 }
 .node-type-webform #webform-component-mesage{
     margin-top: 1em;
     padding-top: 0;
-    width: 28.4em;
+    
+    
 }
 .node-type-webform .form-textarea-wrapper {
     margin-top: 0.4em;
+    
 }
 .node-type-webform  .webform-client-form input.form-text,
 .node-type-webform  .webform-client-form textarea{
@@ -1167,8 +1178,11 @@ display: inline;
     border: 0px solid;
 }
 textarea#edit-submitted-mesage {
-    min-height: 15em;
+  min-height: 200px;
+width: 400px;
+float: left;
 }
+
 #node-webform-28 #edit-submit {
    background: linear-gradient(#7E3CD8 16px, #8D49EA 18px, #6C2BC5) repeat scroll 0 0 transparent;
 border-radius: 5px 5px 5px 5px;
@@ -1465,10 +1479,12 @@ width: 100% !important;
     border: 1px solid #ECB01D;
 border-radius: 2px 2px 2px 2px;
 outline: medium none;
-padding: 3px;
+padding: 0px 3px;
 position: relative;
 right: -2px;
 width: 140px;
+background-position: 10px;
+background:  url("../img/select-arrow.gif") NO-REPEAT 10px center white;
 }
 
 #block-views-exp-recomondations-blog-page select#edit-field-blog-sub-tid option:hover{
@@ -1505,3 +1521,16 @@ position: absolute;
 right: 0;
 width: 50%;
 }
+
+#pathauto-patterns-form input{
+    direction: ltr !important;
+    
+}
+
+.node-type-blog ol,
+.node-type-blog ul {
+    list-style: decimal inside  !important;
+}
+.node-type-blog li{
+    margin: 3px;
+} 
