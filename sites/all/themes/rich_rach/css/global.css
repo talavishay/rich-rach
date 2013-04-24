@@ -206,7 +206,9 @@ body.node-type-camp #zone-content-wrapper {
 #zone-footer-bottom #block-block-4 .block-inner ,
 #zone-footer-bottom #block-block-4 .block-inner .content,
 #zone-footer-bottom #block-block-4{
-    width: 960px;
+    width: 975px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .zone {
     border-left: 1px solid rgb(161, 201, 205) !important;
