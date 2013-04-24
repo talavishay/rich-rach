@@ -1193,9 +1193,9 @@ float: left;
 }
 
 #node-webform-28 #edit-submit {
-    background: #6C2BC5;
-    background: linear-gradient(#7E3CD8 16px, #8D49EA 18px, #6C2BC5) repeat scroll 0 0 transparent;
     background-image: none;
+    background-color: #6C2BC5;
+    background: linear-gradient(#7E3CD8 16px, #8D49EA 18px, #6C2BC5) repeat scroll 0 0 #6C2BC5;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 2px 4px 6px -1px #000000;
     color: white;
