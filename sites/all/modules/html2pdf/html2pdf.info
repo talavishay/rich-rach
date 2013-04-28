@@ -1,0 +1,3 @@
+name = html2pdf
+description = phantomjs pdf "Export" wrapper
+core = 7.x
