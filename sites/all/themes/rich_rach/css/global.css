@@ -1149,17 +1149,17 @@ display: inline;
     font-weight: normal;
     float: right;
 }
-.node-type-webform .form-actions ,
-.node-type-webform .form-item {
+.node-type-webform #webform-client-form-28 .form-actions ,
+.node-type-webform #webform-client-form-28 .form-item {
     width: 100%;
     float: right;
         margin-bottom: 0.5em;
 }
-.node .node-type-webform .form-item label{
+.node-type-webform #webform-client-form-28 .form-item label{
     float: right;
-    width:8.3em;
+    width:auto;
 }
-.node-type-webform .content  .form-item input {
+.node-type-webform  #webform-client-form-28  .form-item input {
     float: left;
 margin-left: 135px;
     width: 264px;
@@ -1175,18 +1175,18 @@ margin-left: 135px;
     
     
 }
-.node-type-webform .form-textarea-wrapper {
+.node-type-webform #webform-client-form-28 .form-textarea-wrapper {
     margin-top: 0.4em;
     
 }
-.node-type-webform  .webform-client-form input.form-text,
-.node-type-webform  .webform-client-form textarea{
+.node-type-webform #webform-client-form-28  input.form-text,
+.node-type-webform #webform-client-form-28  textarea{
     border-color:  rgb(0,0,0);
 }
-.node-type-webform  .webform-client-form input.form-submit{
+.node-type-webform #webform-client-form-28  input.form-submit{
     border: 0px solid;
 }
-textarea#edit-submitted-mesage {
+#webform-client-form-28  textarea#edit-submitted-mesage {
   min-height: 200px;
 width: 400px;
 float: left;
@@ -1207,7 +1207,7 @@ float: left;
     text-shadow: none;
     border: 1px solid  #4a0aa1;
 }
-.node-type-webform #edit-actions{
+#webform-client-form-28  #edit-actions{
    margin-top: 0.45em;
 }
 
