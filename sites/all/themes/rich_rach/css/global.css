@@ -1144,7 +1144,7 @@ display: inline;
 #node-webform-28 {
     width: 36.6em;
 }
-.node-type-webform .webform-client-form label {
+.node-type-webform #webform-client-form-28 .webform-client-form label {
     font-family: arial;
     font-weight: normal;
     float: right;
