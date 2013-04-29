@@ -742,7 +742,7 @@ margin: 0px;
 .view-recomondations  .view-header {
     margin-bottom: 20px;
 }
-.view-recomondations.view-display-id-page .view-content .views-row {
+.view-recomondations.view-display-id-block_recommend .view-content .views-row {
        background: none repeat scroll 0 0 white;
     border-radius: 10px 10px 10px 10px;
     margin-bottom: 13px;
@@ -998,6 +998,7 @@ aside h2.block-title{
     margin-bottom: 10px;
     margin-top: 10px;
 }
+#node-recommend-67 .node-title,
 .view-recomondations  .views-field-title .field-content{
     font-family: 'RaananSuperRegular';
     font-size: 1.35em;
@@ -1310,12 +1311,6 @@ text-decoration: none;
 .view-recomondations .node-unpublished{
     background-color: transparent;
 }
-.view-recomondations  #node-page-48 .node-title{
-    color:rgb(110,182,8);
-    
-}
-
-
 .view-sitemap {
   padding: 10px 0;
 }
@@ -1400,6 +1395,11 @@ width: 292px;
   top: -1px;
 }
 /* ## Blog ## */
+#node-blog-66 .submitted,
+#node-blog-66 .node-title{
+	display: none;
+}
+
 .node-type-blog .node-title{
     color: #E0B10D;
 }
@@ -1479,14 +1479,11 @@ width: 100% !important;
   line-height: 18px;
   font-size:13px;
 }
-#views-exposed-form-recomondations-blog-page label{
-    display: none;
-}
 #block-views-exp-recomondations-blog-page {
   margin-bottom: 20px;
     margin-top: 7px;
 }
-#block-views-exp-recomondations-blog-page select#edit-field-blog-sub-tid{
+.node-type-blog select#edit-tid{
     border: 1px solid #ECB01D;
 border-radius: 2px 2px 2px 2px;
 outline: medium none;
@@ -1498,12 +1495,12 @@ background-position: 10px;
 background:  url("../img/select-arrow.gif") NO-REPEAT 10px center white;
 }
 
-#block-views-exp-recomondations-blog-page select#edit-field-blog-sub-tid option:hover{
+.node-type-blog select#edit-tid option:hover{
        background-color: #EDBD13;
        color:white;
            
 }
-#block-views-exp-recomondations-blog-page select#edit-field-blog-sub-tid option{
+.node-type-blog select#edit-tid option{
     border-top: 1px solid rgb(236, 176, 29);
     border-bottom: 1px solid rgb(236, 176, 29);
     color: rgb(6, 33, 37);
@@ -1511,13 +1508,12 @@ background:  url("../img/select-arrow.gif") NO-REPEAT 10px center white;
     font-size:120%;
     line-height: 135%;
 }
-.view-display-id-blog_page.view-recomondations .item-list a:link,
-.view-display-id-blog_page.view-recomondations .item-list a:visited {
+.view-display-id-block_1 .item-list a:link,
+.view-display-id-block_1 .item-list a:visited {
   color: inherit;
   text-decoration: none;
 }
-
-.view-display-id-blog_page.view-recomondations .item-list {
+.view-display-id-block_1 .item-list {
     margin-bottom: 30px;
 }
 .node-type-blog .submitted {

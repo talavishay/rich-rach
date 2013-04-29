@@ -118,9 +118,9 @@ jQuery('div.field-name-field-image-type div.field-items').after(Drupal.settings.
 //    jQuery('body').addClass('recommend');
 //}
 if(jQuery("body.front").length === 0){
-    jQuery(".view-recomondations.view-display-id-page .view-content .views-row").append(jQuery('<div class="more">המשך >></div>'));
-    jQuery(".view-recomondations.view-display-id-page .view-content .views-row").not(':last-child').after("<hr/>");
-    jQuery(".view-recomondations.view-display-id-page .view-content .views-row .more").bind("click", function(e){
+    jQuery(".view-recomondations.view-display-id-block_recommend .view-content .views-row").append(jQuery('<div class="more">המשך >></div>'));
+    jQuery(".view-recomondations.view-display-id-block_recommend .view-content .views-row").not(':last-child').after("<hr/>");
+    jQuery(".view-recomondations.view-display-id-block_recommend .view-content .views-row .more").bind("click", function(e){
         var views_row = jQuery(e.currentTarget).parents(".views-row");
         jQuery(".teaser", views_row).toggle();
         jQuery(".full", views_row).toggle();
@@ -131,9 +131,12 @@ if(jQuery("body.front").length === 0){
         }
     });
 }
+if( jQuery(".view-recomondations.view-display-id-block_1").length !== 0 ){
+	jQuery("#block-block-6").after(jQuery(".view .view-filters"));
 
+}
 
-jQuery('#views-exposed-form-recomondations-blog-page select  option:first-child').text(jQuery('#views-exposed-form-recomondations-blog-page label').text())
+jQuery('.node-type-blog select#edit-tid  option:first-child').text(jQuery('#edit-tid-wrapper label').css("display","none").text());
 
 // get current node image slideshow 
 if(typeof(Drupal.settings.nid) !== "undefined"){

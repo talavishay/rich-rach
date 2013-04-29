@@ -42,7 +42,7 @@ function rich_rach_alpha_process_zone(&$vars) {
 }
 
 function rich_rach_css_alter(&$css){
-    if($_GET["q"] === "בלוג"){
+    if($_GET["q"] === "node/66"){
         unset($css['sites/all/themes/omega/omega/css/omega-visuals.css']);
     }
 }
