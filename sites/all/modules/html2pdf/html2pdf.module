@@ -1,5 +1,4 @@
 <?php
-
 function html2pdf_menu(){
     $item['html2pdf'] = array(
         'type' => MENU_CALLBACK,
@@ -10,28 +9,17 @@ function html2pdf_menu(){
     );
     return $item;
 }
-
-
-function my_exec($cmd, $input='',$htmltemp){
-    $proc=proc_open($cmd, array(0=>array('pipe', 'r'), 1=>array('pipe', 'w'), 2=>array('pipe', 'w')), $pipes);
-//    echo fwrite($pipes[0], $input);fclose($pipes[0]);
-//    echo stream_get_contents($pipes[1])."\n<br/>";
-//    fclose($pipes[1]);
-//    echo stream_get_contents($pipes[2])."\n<br/>";
-//    fclose($pipes[2]);
-//    echo proc_close($proc);
-//    
-    $stdout=stream_get_contents($pipes[1]);fclose($pipes[1]);
-    $stderr=stream_get_contents($pipes[2]);fclose($pipes[2]);
-    $rtn=proc_close($proc);
-    return array('stdout'=>$stdout,
-                 'stderr'=>$stderr,
-                 'return'=>$rtn
-                      );
- }
-// http://blog.dubbelboer.com/2012/08/24/execute-with-timeout.html
+function html2pdf_preprocess_node($node){
+        $arg =arg();
+        if($node["type"] === "birthday"){
+            drupal_add_js(drupal_get_path("module", "html2pdf").'/js/html2pdf.js');
+            
+        }
+}
 function exec_timeout($cmd, $timeout) {
-  // File descriptors passed to the process.
+// adapted from http://blog.dubbelboer.com/2012/08/24/execute-with-timeout.html
+
+// File descriptors passed to the process.
   $descriptors = array(
     0 => array('pipe', 'r'),  // stdin
     1 => array('pipe', 'w'),  // stdout
@@ -102,63 +90,43 @@ function exec_timeout($cmd, $timeout) {
 
   return $buffer;
 }
-
 function _html2pdf_menu_callback(){    
     $html2pdf =  drupal_get_path("module", "html2pdf");
-    chdir(drupal_get_path("module", "html2pdf"));
-    
-    $cmd = 'phantomjs script.js '.$_GET["w"].' '.$_GET["h"];
-    
+    chdir( $html2pdf );
+    $container = (object)$_POST["container"];
+    $post = json_encode($container ,  JSON_FORCE_OBJECT);
+    $cmd = "phantomjs script.js '".$post."'";
     $output = exec_timeout($cmd, 1);
-//    $output coming from :
-//          $buffer .= stream_get_contents($pipes[1]);
+//    $output <=  $buffer .= stream_get_contents($pipes[1]);
 
-// JSON OUTPUT / phantomjs direct output..
-//    echo $output;
-    
-    
+//  ##  JSON OUTPUT / phantomjs direct output..
+//echo $output;
+
+//  ##F ILE OUTPUT
+if (file_exists($file)) {
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename='.basename($file));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    ob_clean();
+    flush();
+    readfile($file);
+    exit;
+}
+
 //  ##  HTML output
-echo    '<html><head></head><body><img src="'.$html2pdf.'/out.png?'.time().'"/>';
-echo    '<script>    '.
-        '   var status = '.$output.';       '.
-        '   console.log(status);            '.
-        '   window.location = "'.$html2pdf.'/out.pdf";          '.
-        '//  document.title = status.success;'.
-        '</script>';
-echo    '</body></html>';
-    
+//echo    '<html><head></head><body><img src="'.$html2pdf.'/out.png?'.time().'"/>';
+//echo    '<script>    '.
+//        '   var status = '.$output.';       '.
+//        '   console.log(status);            '.
+//        '   window.location = "'.$html2pdf.'/out.pdf";          '.
+//        '//  document.title = status.success;'.
+//        '</script>';
+//echo    '</body></html>';    
 //  done !
     die();
 }
-
-//echo date(DATE_W3C)."\n";
-//echo json_encode(my_exec($cmd,'',$htmltemp));
-
-//echo date(DATE_W3C)."\n";
-//$out = 0;
-//echo passthru($cmd, $out);
-//echo $out;
-//exhit();
-//var_export(my_exec("wkhtmltopdf --page-width 350 --page-height 235 /var/www/s/htmltemp.html  /var/www/s/wkoutput.pdf "));
-
-//$htmltemp = $_SERVER["DOCUMENT_ROOT"].'/'.drupal_get_path("module", "html2pdf").'/out/out.html';
-//$pdf = $_SERVER["DOCUMENT_ROOT"].'/'.drupal_get_path("module", "html2pdf").'/out/out.pdf';
-//$handle = fopen($htmltemp , 'w');
-//$h = 500;
-//$w = 500;
-//$output = array();
-//$return_var = 0;
-//fwrite($handle, '
-//<html><body>
-//    <div id="layerContainer"    style="        height: '.$h.';        width:'.$w.';">'.
-//        REQUEST_TIME.'</div>
-//</body></html>');
-
-//$cmd = 'cd '.$html2pdf.';';
-
-//function html2pdf(){
-//    
-//}
-//function html2pdf(){
-//    
-//}

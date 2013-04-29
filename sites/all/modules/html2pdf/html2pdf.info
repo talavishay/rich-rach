@@ -1,3 +1,6 @@
 name = html2pdf
 description = phantomjs pdf "Export" wrapper
 core = 7.x
+
+
+scripts[] = js/html2pdf.js
