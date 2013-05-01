@@ -482,6 +482,11 @@ form.node-form .form-wrapper {
     text-decoration: none;
     
 }
+.media_bar a.print {
+    background: url("../img/print-icon-color.png") no-repeat scroll 10px -1px transparent;
+    color: transparent;
+    width: 117px;
+}
 .media_bar a.video{
     background:url("../img/video-icon.png") no-repeat scroll 10px -24px transparent ;
     width: 56px;
@@ -1065,6 +1070,9 @@ span#close {
         top: 4px;
         cursor: pointer;
 }
+span#close.x {
+    position: relative;
+}
 
 
 .front .views-slideshow-cycle-main-frame{
@@ -1083,6 +1091,49 @@ top: 50%;
 width: 100%;
 z-index: 101;
 }
+#block-webform-client-block-65{
+    /*display: inline-block;*/
+/*    position: relative;
+    top: 75px;
+    */
+    display: none;    
+     
+    position: relative;
+    top: -240px;
+    
+}
+
+#block-webform-client-block-65 .webform-component > div,
+#block-webform-client-block-65 .webform-component > label{
+    display: inline;
+}
+#block-webform-client-block-65 .block-title,
+#block-webform-client-block-65 .webform-component > label{
+    display: inline-block;
+    width: 100px;
+    /*color: #DF1076;*/
+    font-size : 1em;
+    font-weight: normal;
+}
+#block-webform-client-block-65 #edit-submit{
+    background: linear-gradient(#EB0778 16px, #F11080 18px, #DF1076 20px) repeat scroll 0 0 transparent;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    display: block;
+    font-family: 'RaananSuperBold';
+    font-size: 16px;
+    height: 32px;
+    line-height: 36px;
+    min-width: 53px;
+    padding: 0 12px;
+    text-align: center !important;
+    text-decoration: none;
+    text-shadow: none;
+    
+}
+#block-webform-client-block-65 .block-title{
+    width: auto;
+}
 #block-views-829a587528abfc530ad5f75cdeaaf250{
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
 left: -30.5px;
@@ -1095,6 +1146,28 @@ z-index: 100;
 display: none;    
     
 }
+form#webform-client-form-65 {
+/*  background: none repeat scroll 0 0 whitesmoke;
+  border-radius: 7px 7px 7px 7px;
+  box-shadow: -1px 2px 8px #DF1076;
+  margin: 0 auto;
+  padding: 10px 50px 90px;
+  width: 470px;
+  z-index: 101;*/
+}
+form#webform-client-form-65 .webform-component-adress{
+    position:relative;
+}
+#edit-submitted-adress{
+ max-width:   162px !important;
+}
+/*.phantom:hover{
+    transform: scale(2);
+    transform-origin: 17% 62% 0;
+}
+*/
+
+
 #block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow{
       background: url("/sites/all/modules/views/images/loading.gif") no-repeat scroll center center / 28% auto transparent;
 }
@@ -1140,7 +1213,15 @@ display: inline;
 *
 *   CONTACT FORM
 *    WEBFORM
-*/
+*/  
+#webform-component-time .webform-container-inline {
+  direction: ltr;
+  
+}
+#webform-component-time .webform-container-inline select{
+  direction: rtl;
+  
+}
 #block-block-3,
 #node-webform-28 {
     width: 36.6em;
@@ -1150,17 +1231,17 @@ display: inline;
     font-weight: normal;
     float: right;
 }
-.node-type-webform .form-actions ,
-.node-type-webform .form-item {
+.node-type-webform #webform-client-form-28 .form-actions ,
+.node-type-webform #webform-client-form-28 .form-item {
     width: 100%;
     float: right;
         margin-bottom: 0.5em;
 }
-.node .node-type-webform .form-item label{
+.node-type-webform #webform-client-form-28 .form-item label{
     float: right;
-    width:8.3em;
+    width:auto;
 }
-.node-type-webform .content  .form-item input {
+.node-type-webform  #webform-client-form-28  .form-item input {
     float: left;
 margin-left: 135px;
     width: 264px;
@@ -1176,18 +1257,18 @@ margin-left: 135px;
     
     
 }
-.node-type-webform .form-textarea-wrapper {
+.node-type-webform #webform-client-form-28 .form-textarea-wrapper {
     margin-top: 0.4em;
     
 }
-.node-type-webform  .webform-client-form input.form-text,
-.node-type-webform  .webform-client-form textarea{
+.node-type-webform #webform-client-form-28  input.form-text,
+.node-type-webform #webform-client-form-28  textarea{
     border-color:  rgb(0,0,0);
 }
-.node-type-webform  .webform-client-form input.form-submit{
+.node-type-webform #webform-client-form-28  input.form-submit{
     border: 0px solid;
 }
-textarea#edit-submitted-mesage {
+#webform-client-form-28  textarea#edit-submitted-mesage {
   min-height: 200px;
 width: 400px;
 float: left;
@@ -1208,7 +1289,7 @@ float: left;
     text-shadow: none;
     border: 1px solid  #4a0aa1;
 }
-.node-type-webform #edit-actions{
+#webform-client-form-28  #edit-actions{
    margin-top: 0.45em;
 }
 

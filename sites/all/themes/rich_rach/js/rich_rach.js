@@ -66,26 +66,31 @@ jQuery(".view-taxonomy-term li a.all").live("click", function(e){
 // field-name-field-image-type 
 //
 // youtube
-Drupal.settings.rich_rach.link = jQuery('<div class="media_bar"><a class="video" href="#">סרטון</a></div>').append(jQuery('.node > .content > iframe '));
+Drupal.settings.rich_rach.link = jQuery('<div class="media_bar"><a class="print" href="#">הדפיסו הזמנות</a><a class="video" href="#">סרטון</a></div>').append(jQuery('.node > .content > iframe '));
 //jQuery('html:not(.overlay-open) .field-type-youtube').bind("click", function() {
 //    jQuery('.field-name-field-youtube').toggle();
 //});
+jQuery(".media_bar .print").live("click", function(e) {
+    jQuery("#block-webform-client-block-65, .node .field-name-body ").toggle();
+    
+});
 jQuery(".media_bar .video").live("click", function(e) {
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250, .field-name-field-youtube').show();
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-content').hide();
     if(jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250 #close").length === 0 ){
-        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span id="close"></span></div>'));
+        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span class="close"></span></div>'));
     }
     if( jQuery('.field-name-field-youtube:visible').length === 0){
         jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow').append(jQuery(Drupal.settings.rich_rach.youtube));
             jQuery('.field-name-field-youtube').show();
     }
 });
+
 jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250 .media_bar .video").live("click", function(e) {
     e.preventDefault();
     jQuery('.field-name-field-youtube').show();
     if(jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250 #close").length === 0 ){
-        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span id="close"></span></div>'));
+        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span class="close"></span></div>'));
     }
     if( jQuery('.field-name-field-youtube:visible').length === 0){
         jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow').append(jQuery(Drupal.settings.rich_rach.youtube));
@@ -100,8 +105,8 @@ jQuery('#img_toggle').live("click", function(e){
     jQuery('.field-name-field-youtube').hide();
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-content').show();
 });
-jQuery('span#close').live("click", function(e){
-    jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250').hide();
+jQuery('span.close,span#close').live("click", function(e){
+    jQuery("#region-content .block-views,#region-content .block-webform").hide();
     if( jQuery('.field-name-field-youtube').length === 1){
         Drupal.settings.rich_rach.youtube = jQuery('.field-name-field-youtube');
         jQuery('.field-name-field-youtube').remove();
@@ -109,6 +114,12 @@ jQuery('span#close').live("click", function(e){
 });
 jQuery('div.field-name-field-image-type div.field-items').after(Drupal.settings.rich_rach.link).before(jQuery('<div id="img_toggle"></div>'));
 
+// print 
+
+// add close botton the webform block overlay
+jQuery("form#webform-client-form-65").prepend(jQuery('<div class="view-header"><span class="close"></span></div>').bind("click", function(e){
+    jQuery(" #block-webform-client-block-65").hide();
+}));
 
 //if (jQuery('.view-display-id-page_1').length === 1) {
 //    jQuery('body').addClass('blog');
@@ -151,6 +162,7 @@ if(typeof(Drupal.settings.nid) !== "undefined"){
                     var ajax = new Drupal.ajax(base, this, element_settings);
     }).click();
 }
+
 });
 
 Drupal.ajax.prototype.commands.after_slides_refresh = function (ajax, response, status) {

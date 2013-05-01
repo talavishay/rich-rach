@@ -5,5 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
             <name>rich-rach.avishay.tk</name>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>בכתובת</word>
+            <word>כתובת</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>
