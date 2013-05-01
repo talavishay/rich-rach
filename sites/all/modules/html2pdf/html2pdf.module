@@ -1,10 +1,11 @@
 <?php
+
 function html2pdf_menu(){
     $item['html2pdf'] = array(
         'type' => MENU_CALLBACK,
-        'access callback' => 1,
-        'page arguments' => array(1),
+        'access arguments' => array('access content'),
         'page callback' => '_html2pdf_menu_callback',
+        'page arguments' => array(1,2),
 //        'delivery callback' => 'ajax_deliver',
     );
     return $item;
@@ -12,8 +13,8 @@ function html2pdf_menu(){
 function html2pdf_preprocess_node($node){
         $arg =arg();
         if($node["type"] === "birthday"){
-            drupal_add_js(drupal_get_path("module", "html2pdf").'/js/html2pdf.js');
-            
+            $js = drupal_get_path("module", "html2pdf").'/js';
+            drupal_add_js($js.'/html2pdf.js');
         }
 }
 function exec_timeout($cmd, $timeout) {
@@ -90,35 +91,38 @@ function exec_timeout($cmd, $timeout) {
 
   return $buffer;
 }
-function _html2pdf_menu_callback(){    
-    $html2pdf =  drupal_get_path("module", "html2pdf");
-    chdir( $html2pdf );
-    $container = (object)$_POST["container"];
-    $post = json_encode($container ,  JSON_FORCE_OBJECT);
-    $cmd = "phantomjs script.js '".$post."'";
-    $output = exec_timeout($cmd, 1);
-//    $output <=  $buffer .= stream_get_contents($pipes[1]);
 
-//  ##  JSON OUTPUT / phantomjs direct output..
-//echo $output;
-
-//  ##F ILE OUTPUT
-if (file_exists($file)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename='.basename($file));
-    header('Content-Transfer-Encoding: binary');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($file));
-    ob_clean();
-    flush();
-    readfile($file);
-    exit;
+function _html2pdf_menu_callback($arg1, $phantomjs_args = 0){
+    $cmd = "phantomjs ";
+// DEBUG
+//    if($phantomjs_args  !== 0){
+//        $cmd .= $phantomjs_args ;
+//    }        
+    $cmd .= " script.js ";
+    if($arg1 === "data" && count($_POST["json"])){
+        $container = (object)$_POST["json"];
+        
+        $post = json_encode($container ,  JSON_FORCE_OBJECT);
+        $cmd .= "'".$post."'";
+        chdir( drupal_get_path("module", "html2pdf").'/phantom/' );
+        exit(exec_timeout($cmd, 1) );
+    }die();
 }
-
+// ##     process output from phantom 
+// 
+//        $output = exec_timeout($cmd, 1);//<=  $buffer .= stream_get_contents($pipes[1]);
+//        $json_decode = json_decode($output);
+//        $json_decode = json_decode(exec_timeout($cmd, 1));
+//        if($json_decode){//        
+//        if(json_decode(exec_timeout($cmd, 1))){//        echo $json_decode->media;die();
+//           $file = $_SERVER["DOCUMENT_ROOT"].'/'.$html2pdf.'/'.$json_decode->fileName;
+//           $json_decode->url = "http://".$_SERVER["SERVER_NAME"].'/'.$html2pdf.'/'.$json_decode->fileName;
+//           $json_decode->fileName = $html2pdf.'/'.$json_decode->fileName;
+//           $output = json_encode($json_decode);
+//           exit($output );
+//           
 //  ##  HTML output
+//  
 //echo    '<html><head></head><body><img src="'.$html2pdf.'/out.png?'.time().'"/>';
 //echo    '<script>    '.
 //        '   var status = '.$output.';       '.
@@ -126,7 +130,22 @@ if (file_exists($file)) {
 //        '   window.location = "'.$html2pdf.'/out.pdf";          '.
 //        '//  document.title = status.success;'.
 //        '</script>';
-//echo    '</body></html>';    
-//  done !
-    die();
-}
+//  echo    '</body></html>';    
+//  
+//  
+//  ##  FILE OUTPUT
+//        
+//            header('Content-Description: File Transfer');
+//            header('Content-Type: application/octet-stream');
+//            header('Content-Disposition: attachment; filename='.basename($file));
+//            header('Content-Transfer-Encoding: binary');
+//            header('Expires: 0');
+//            header('Cache-Control: must-revalidate');
+//            header('Pragma: public');
+//            header('Content-Length: ' . filesize($file));
+//            ob_clean();
+//            flush();
+//            readfile($file);
+//            unlink($file);
+//            exit();
+//        }
