@@ -1090,7 +1090,49 @@ top: 50%;
 width: 100%;
 z-index: 101;
 }
-#block-webform-client-block-65,
+#block-webform-client-block-65{
+    /*display: inline-block;*/
+/*    position: relative;
+    top: 75px;
+    */
+    display: none;    
+     
+    position: relative;
+    top: -240px;
+    
+}
+
+#block-webform-client-block-65 .webform-component > div,
+#block-webform-client-block-65 .webform-component > label{
+    display: inline;
+}
+#block-webform-client-block-65 .block-title,
+#block-webform-client-block-65 .webform-component > label{
+    display: inline-block;
+    width: 100px;
+    /*color: #DF1076;*/
+    font-size : 1em;
+    font-weight: normal;
+}
+#block-webform-client-block-65 #edit-submit{
+    background: linear-gradient(#EB0778 16px, #F11080 18px, #DF1076 20px) repeat scroll 0 0 transparent;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    display: block;
+    font-family: 'RaananSuperBold';
+    font-size: 16px;
+    height: 32px;
+    line-height: 36px;
+    min-width: 53px;
+    padding: 0 12px;
+    text-align: center !important;
+    text-decoration: none;
+    text-shadow: none;
+    
+}
+#block-webform-client-block-65 .block-title{
+    width: auto;
+}
 #block-views-829a587528abfc530ad5f75cdeaaf250{
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
 left: -30.5px;
@@ -1104,14 +1146,27 @@ display: none;
     
 }
 form#webform-client-form-65 {
-  background: none repeat scroll 0 0 whitesmoke;
+/*  background: none repeat scroll 0 0 whitesmoke;
   border-radius: 7px 7px 7px 7px;
   box-shadow: -1px 2px 8px #DF1076;
   margin: 0 auto;
   padding: 10px 50px 90px;
   width: 470px;
-  z-index: 101;
+  z-index: 101;*/
 }
+form#webform-client-form-65 .webform-component-adress{
+    position:relative;
+}
+#edit-submitted-adress{
+ max-width:   162px !important;
+}
+/*.phantom:hover{
+    transform: scale(2);
+    transform-origin: 17% 62% 0;
+}
+*/
+
+
 #block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow{
       background: url("/sites/all/modules/views/images/loading.gif") no-repeat scroll center center / 28% auto transparent;
 }
@@ -1157,7 +1212,15 @@ display: inline;
 *
 *   CONTACT FORM
 *    WEBFORM
-*/
+*/  
+#webform-component-time .webform-container-inline {
+  direction: ltr;
+  
+}
+#webform-component-time .webform-container-inline select{
+  direction: rtl;
+  
+}
 #block-block-3,
 #node-webform-28 {
     width: 36.6em;
