@@ -3,3 +3,5 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 nbproject
+sites/all/modules/html2pdf/phantom/out/
+
