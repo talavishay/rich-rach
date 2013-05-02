@@ -66,12 +66,17 @@ jQuery(".view-taxonomy-term li a.all").live("click", function(e){
 // field-name-field-image-type 
 //
 // youtube
-Drupal.settings.rich_rach.link = jQuery('<div class="media_bar"><a class="print" href="#">הדפיסו הזמנות</a><a class="video" href="#">סרטון</a></div>').append(jQuery('.node > .content > iframe '));
+Drupal.settings.rich_rach.link = jQuery('<div class="media_bar"><a class="video" href="#">סרטון</a></div>').append(jQuery('.node > .content > iframe '));
+
+
+
 //jQuery('html:not(.overlay-open) .field-type-youtube').bind("click", function() {
 //    jQuery('.field-name-field-youtube').toggle();
 //});
+
 jQuery(".media_bar .print").live("click", function(e) {
-    jQuery("#block-webform-client-block-65, .node .field-name-body ").toggle();
+jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250").hide();
+    jQuery("#block-webform-client-block-65, .node .field-name-body ").toggle("slow");
     
 });
 jQuery(".media_bar .video").live("click", function(e) {
@@ -105,8 +110,8 @@ jQuery('#img_toggle').live("click", function(e){
     jQuery('.field-name-field-youtube').hide();
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-content').show();
 });
-jQuery('span.close,span#close').live("click", function(e){
-    jQuery("#region-content .block-views,#region-content .block-webform").hide();
+jQuery('span#close').live("click", function(e){
+    jQuery("#region-content .block-views").hide();
     if( jQuery('.field-name-field-youtube').length === 1){
         Drupal.settings.rich_rach.youtube = jQuery('.field-name-field-youtube');
         jQuery('.field-name-field-youtube').remove();
@@ -121,13 +126,6 @@ jQuery("form#webform-client-form-65").prepend(jQuery('<div class="view-header"><
     jQuery(" #block-webform-client-block-65").hide();
 }));
 
-//if (jQuery('.view-display-id-page_1').length === 1) {
-//    jQuery('body').addClass('blog');
-//
-//}
-//if (jQuery('.view-display-id-page').length === 1) {
-//    jQuery('body').addClass('recommend');
-//}
 if(jQuery("body.front").length === 0){
     jQuery(".view-recomondations.view-display-id-block_recommend .view-content .views-row").append(jQuery('<div class="more">המשך >></div>'));
     jQuery(".view-recomondations.view-display-id-block_recommend .view-content .views-row").not(':last-child').after("<hr/>");
@@ -148,29 +146,28 @@ if( jQuery(".view-recomondations.view-display-id-block_1").length !== 0 ){
 }
 
 jQuery('.node-type-blog select#edit-tid  option:first-child').text(jQuery('#edit-tid-wrapper label').css("display","none").text());
-
-// get current node image slideshow 
-if(typeof(Drupal.settings.nid) !== "undefined"){
-    // ####    Drupal ajax method
-    jQuery('<div id="get_slides" style="display:none;"></div>').addClass('ajax-processed').each(function (i,val) {
-                    var element_settings = {};
-                    var base = jQuery(this).attr('id');
-                    element_settings.url = '/get_slides/'+Drupal.settings.nid; //jQuery(this).attr('id');
-                    element_settings.event = 'click';
-                    element_settings.progress = { 'type': 'throbber' };
-                    element_settings.submit = { "js": true, "nid": Drupal.settings.nid };      // ::::: Here we add a query parameter.
-                    var ajax = new Drupal.ajax(base, this, element_settings);
-    }).click();
-}
-
+    // get current node image slideshow 
+    if(typeof(Drupal.settings.nid) !== "undefined" ){
+        // ####    Drupal ajax method
+        jQuery('<div id="get_slides" style="display:none;"></div>').addClass('ajax-processed').each(function (i,val) {
+                        var element_settings = {};
+                        var base = jQuery(this).attr('id');
+                        element_settings.url = '/get_slides/'+Drupal.settings.nid; //jQuery(this).attr('id');
+                        element_settings.event = 'click';
+                        element_settings.progress = { 'type': 'throbber' };
+                        element_settings.submit = { "js": true, "nid": Drupal.settings.nid };      // ::::: Here we add a query parameter.
+                        var ajax = new Drupal.ajax(base, this, element_settings);
+        }).click();
+    }
+    if(typeof(Drupal.settings.views_get_view) !== "undefined" && Drupal.settings.nid !== "4"){
+        jQuery(".media_bar").prepend(jQuery('<a class="print" href="#">הדפיסו הזמנות</a>'));
+    }
 });
 
 Drupal.ajax.prototype.commands.after_slides_refresh = function (ajax, response, status) {
-	
-	
-	if(jQuery('.view-nid-field-image-slideshow').children().length !== 0 ){
-		jQuery('#img_toggle').css("display","block");
-	}
-	jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow ').append(jQuery(".field-name-field-youtube")).after(jQuery(Drupal.settings.rich_rach.link).clone());
+    if(jQuery('.view-nid-field-image-slideshow').children().length !== 0 ){
+            jQuery('#img_toggle').css("display","block");
+    }
+    jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow ').append(jQuery(".field-name-field-youtube")).after(jQuery(Drupal.settings.rich_rach.link).clone());
 };
 

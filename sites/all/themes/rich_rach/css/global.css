@@ -405,9 +405,9 @@ body.node-type-birthday #page header #block-system-main-menu .menu  li a#main_me
     /*border-radius: 5px 5px 0 0 !important ;*/
     padding-bottom: 6px !important;
 }
-.field-name-field-image-type {
-      float: left;
-    /*left: -39px;*/
+.node .field-name-field-image-type {
+    float: left;
+    min-height: 225px;
     margin-bottom: 13px;
     margin-right: 39px;
     margin-top: 34px;
@@ -483,9 +483,12 @@ form.node-form .form-wrapper {
     
 }
 .media_bar a.print {
-    background: url("../img/print-icon-color.png") no-repeat scroll 10px -1px transparent;
+    background: url("../img/print-icon-color.png") no-repeat scroll 0 -2px transparent;
     color: transparent;
-    width: 117px;
+    width: 94px;
+}
+.media_bar a.print:hover {
+    background-position: 0 -37px;
 }
 .media_bar a.video{
     background:url("../img/video-icon.png") no-repeat scroll 10px -24px transparent ;
@@ -1092,15 +1095,10 @@ width: 100%;
 z-index: 101;
 }
 #block-webform-client-block-65{
-    /*display: inline-block;*/
-/*    position: relative;
-    top: 75px;
-    */
-    display: none;    
-     
+    display: none;
     position: relative;
     top: -240px;
-    
+    width: 400px;
 }
 
 #block-webform-client-block-65 .webform-component > div,
@@ -1120,6 +1118,7 @@ z-index: 101;
     border-radius: 5px 5px 5px 5px;
     color: white;
     display: block;
+    font-weight: normal;
     font-family: 'RaananSuperBold';
     font-size: 16px;
     height: 32px;

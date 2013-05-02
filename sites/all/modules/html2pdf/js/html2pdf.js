@@ -1,7 +1,13 @@
 jQuery(document).ready(function(){
+    var submit = jQuery("#webform-client-form-65 input#edit-submit");
 jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",function(e){
     e.preventDefault();
 
+    Drupal.settings.loading = window.setInterval(function(){
+            var sub = jQuery(submit).val();
+            jQuery("#webform-client-form-65 input#edit-submit").val(sub+" *");
+        
+    }, 800);
     var data = {    "json":{
                         "type"      : jQuery(".node .node-title").text(),
                         "hour"      : jQuery("#edit-submitted-time-hour option:selected").val(),
@@ -20,6 +26,7 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
         "type"  : "POST",
         "data"  : data,
         "success": function(data){
+            clearInterval(Drupal.settings.loading);
             try{
                 jQuery(".phantom").remove();
                 var phantom_page = jQuery.parseJSON(data);
