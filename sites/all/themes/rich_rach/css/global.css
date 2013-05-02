@@ -478,7 +478,7 @@ form.node-form .form-wrapper {
     font: 11px arial;
     height: 13px;
     margin: 1px 5px 0 0;
-    padding: 10px 10px 0;
+    padding: 10px 1px 0px 10px;
     text-decoration: none;
     
 }
@@ -950,6 +950,8 @@ body.page-node aside .block.block-menu{
     margin-bottom: 49px;    
     /*overflow: hidden;*/
 }
+
+
 #block-menu-menu-select .menu li.active-trail a,
 section#block-menu-menu-birthday .menu .active-trail a {
     color: white;
@@ -1475,6 +1477,10 @@ width: 292px;
   top: -1px;
 }
 /* ## Blog ## */
+#taxonomy-select-blog .block.block-menu{
+    width:136px;
+    margin-right:0px;
+}
 #node-blog-66 .submitted,
 #node-blog-66 .node-title{
 	display: none;
@@ -1559,34 +1565,69 @@ width: 100% !important;
   line-height: 18px;
   font-size:13px;
 }
-#block-views-exp-recomondations-blog-page {
+#taxonomy-select-blog{
   margin-bottom: 20px;
-    margin-top: 7px;
+    width: 140px;
 }
-.node-type-blog select#edit-tid{
+#taxonomy-select-blog .content.clearfix > ul:not(.toggle) {
     border: 1px solid #ECB01D;
-border-radius: 2px 2px 2px 2px;
-outline: medium none;
-padding: 0px 3px;
-position: relative;
-right: -2px;
-width: 140px;
-background-position: 10px;
-background:  url("../img/select-arrow.gif") NO-REPEAT 10px center white;
+    height: 20px;
+    margin-bottom: 4px;
+}
+#taxonomy-select-blog .toggle{
+    background-color: white;
+    background-position: 10px center;
+    border: 1px solid #ECB01D;
+    border-radius: 2px 2px 2px 2px;
+    margin-right: 0;
+    outline: 0 none;
+    display: none;
 }
 
-.node-type-blog select#edit-tid option:hover{
-       background-color: #EDBD13;
-       color:white;
+#taxonomy-select-blog #toggle{
+    background:  url("../img/select-arrow.gif") no-repeat 10px center white;
+    cursor: pointer;
+}
+#taxonomy-select-blog  li a{
+    text-decoration: none;
+    color: inherit;
+}
+#taxonomy-select-blog  li{
+    list-style-image: none;
+    list-style: none;
+      padding-right: 5px;
+      font-size: 12px;
+}
+
+#taxonomy-select-blog  li#disabeld {
+    font-weight: bold;
+    padding: 5px;
+    background-color: #EDBD13;
+    color:white;       
+}
+#taxonomy-select-blog  li#disabeld ,
+#taxonomy-select-blog  li#disabeld a{
+       cursor: default;
+}
+#taxonomy-select-blog .toggle li:hover{
+    font-weight: bold;
+    padding: 5px;
+    background-color: #EDBD13;
+    color:white;       
            
 }
-.node-type-blog select#edit-tid option{
-    border-top: 1px solid rgb(236, 176, 29);
-    border-bottom: 1px solid rgb(236, 176, 29);
-    color: rgb(6, 33, 37);
-    padding: 12px 10px;
-    font-size:120%;
-    line-height: 135%;
+#taxonomy-select-blog .toggle ul{
+    margin:0px;
+    padding:0px;
+}
+
+#taxonomy-select-blog .toggle li{
+    border-bottom: 1px solid #ECB01D;
+    border-top: 1px solid #ECB01D;
+    color: #062125;
+    cursor: pointer;
+    line-height: inherit;
+    list-style: none outside none;
 }
 .view-display-id-block_1 .item-list a:link,
 .view-display-id-block_1 .item-list a:visited {
@@ -1613,11 +1654,3 @@ width: 50%;
     direction: ltr !important;
     
 }
-
-.node-type-blog ol,
-.node-type-blog ul {
-    list-style: decimal inside  !important;
-}
-.node-type-blog li{
-    margin: 3px;
-} 

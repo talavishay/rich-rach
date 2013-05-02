@@ -140,9 +140,11 @@ if(jQuery("body.front").length === 0){
         }
     });
 }
-if( jQuery(".view-recomondations.view-display-id-block_1").length !== 0 ){
-	jQuery("#block-block-6").after(jQuery(".view .view-filters"));
-
+if( typeof(Drupal.settings.taxonomy_menu) !== "undefined" ){
+	jQuery("#block-block-6").after(jQuery(Drupal.settings.taxonomy_menu));  
+        jQuery('#toggle').bind("click", function(e){
+        jQuery("#taxonomy-select-blog .toggle").toggle();
+        });
 }
 
 jQuery('.node-type-blog select#edit-tid  option:first-child').text(jQuery('#edit-tid-wrapper label').css("display","none").text());

@@ -1,8 +1,28 @@
 <?php
 function rich_rach_views_pre_render(&$view) {
-    if (isset($view) && arg(0) != 'admin') {
-    if ($view->name === "recomondations"){}
+    if (isset($view) && arg(0) != 'admin' && $view->name === "blog") {
+        _rich_rach_taxonomy_select_blog();
     }
+}
+
+
+function rich_rach_init(){
+    $arg = arg();
+    if ($arg[0] == 'taxonomy' && $arg[1] == 'term'  && !isset($arg[3]) ){
+        _rich_rach_taxonomy_select_blog();
+    }
+}
+function _rich_rach_taxonomy_select_blog(){
+        $tax = taxonomy_get_tree(5);// 1 = choose term by  tax ID
+        $parent_menu = '<section id="taxonomy-select-blog"><div class="block-inner clearfix"><div class="content clearfix">';
+        $parent_menu .= '<ul class=""><li id="toggle">חפשו טקסט לפי:</li></ul>';
+        $parent_menu .= '<ul class="toggle" >';
+//        $parent_menu .= '<li id="disabeld" class="leaf"><a data="block-views-taxonomy-term-block-NULL"  href="#">נושאים לימי הולדת</a></li>';
+        foreach ($tax as $key => $value) {
+            $parent_menu .= '<li class="leaf"><a  href="/taxonomy/term/'.$value->tid.'">'.$value->name.'</a></li>';
+        }
+        $parent_menu .= '</ul></div></div></section>';
+        drupal_add_js(array('taxonomy_menu' => $parent_menu ), 'setting');    
 }
 function rich_rach_menu(){
     $items["get_slides/%"] = array(
@@ -15,15 +35,6 @@ function rich_rach_menu(){
      
     return $items;
 }
-function rich_rach_node_view_alter(&$build){
-    drupal_add_library('system', 'drupal.ajax');            
-    $build=$build;
-    $nid= $build["#node"]->nid;
-    $type = gettype(intval($nid));
-    if( $type === "integer"){
-        drupal_add_js(array('nid' => $nid), 'setting');
-    }
-}
 function get_slides($nid){
         $slides = views_embed_view('nid_field_image_slideshow','block_1', $nid);
         return array(
@@ -33,6 +44,7 @@ function get_slides($nid){
                 array('command' => 'after_slides_refresh', 'data'=>'none'),
         ));
 }
+
 function rich_rach_module_implements_alter(&$implementations, $hook) {
 //    drupal_set_message($hook);
     if ( ($hook == 'js_alter' && isset($implementations['rich_rach']))  ) {
@@ -41,45 +53,28 @@ function rich_rach_module_implements_alter(&$implementations, $hook) {
         $implementations['rich_rach'] = $group;
     }
 }
-function rich_rach_csss_alter($css ){
-    $k=0;    
-}
-//
-//function rich_rach_js_alter($javascript ){
-//
-//    $arg = arg();
-//    if($arg[0] === "node"&& $arg[1] === "28"){
-//         $exclude = array(
-//            'misc/textarea.js' => FALSE,
-//            );
-//        $javascript = array_diff_key($javascript, $exclude);
-//    }
-//}
-function rich_rach_preprocess_node(&$variables) {
-if ($variables['type'] ===  'birthday' ) {
-$blocks = Array();
-
-$tax = taxonomy_get_tree(1);// 1 = choose term by  tax ID
-
-$parent_menu = '<section id="block-menu-menu-select" class="block block-menu block-menu-select block-menu-menu-select odd"><div class="block-inner clearfix"><h2 class="block-title">חפשו יום הולדת לפי<span id="block-menu-menu-select_toggle"></span></h2><div class="content clearfix"><ul class="menu">';
-foreach ($tax as $key => $value) {
-    // build all sub-menus
-    $views_get_view = views_get_view_result('taxonomy_term', 'embed_1', $value->tid);        
-    $blocks[$value->tid] = '<div class="view-taxonomy-term taxonomy-term-'.$value->tid.'" id="block-views-taxonomy-term-block-'.$value->tid.'"><div class="view-content"><ul class="menu" >';
-            $nodes = Array(); 
-    foreach($views_get_view as $k => $node){
-        
-        $arr = in_array($node->nid, $nodes);
-        if(!$arr){
-            $blocks[$value->tid] .= '<li class="leaf"><a id="taxonomy-term-'.$value->tid.'" href="/node/'.$node->nid.'#taxonomy=taxonomy-term-'.$value->tid.'">'.$node->node_title.'</a></li>';
-            $nodes[] = $node->nid;            
-        }
+function rich_rach_preprocess_node(&$variables) {    
+    if ($variables['type'] ===  'blog' ) {
+        _rich_rach_taxonomy_select_blog();
     }
+    if ($variables['type'] ===  'birthday' ) {
+        drupal_add_library('system', 'drupal.ajax');            
+        drupal_add_js(array('nid' => $variables["nid"]), 'setting');
+        $blocks = Array();
+        $tax = taxonomy_get_tree(1);// 1 = choose term by  tax ID
+        $parent_menu = '<section id="block-menu-menu-select" class="block block-menu block-menu-select block-menu-menu-select odd"><div class="block-inner clearfix"><h2 class="block-title">חפשו יום הולדת לפי<span id="block-menu-menu-select_toggle"></span></h2><div class="content clearfix"><ul class="menu">';
+        foreach ($tax as $key => $value) {    // build all sub-menus
+        $views_get_view = views_get_view_result('taxonomy_term', 'embed_1', $value->tid);        
+        $blocks[$value->tid] = '<div class="view-taxonomy-term taxonomy-term-'.$value->tid.'" id="block-views-taxonomy-term-block-'.$value->tid.'"><div class="view-content"><ul class="menu" >';
+        $nodes = Array(); 
+        foreach($views_get_view as $k => $node){
+            $arr = in_array($node->nid, $nodes);
+            if(!$arr){
+                $blocks[$value->tid] .= '<li class="leaf"><a id="taxonomy-term-'.$value->tid.'" href="/node/'.$node->nid.'#taxonomy=taxonomy-term-'.$value->tid.'">'.$node->node_title.'</a></li>';
+                $nodes[] = $node->nid;            
+            }
+        }
     $blocks[$value->tid] .= '</ul></div></div>';
-    
-    //build the parent menu
-    
-    
     $parent_menu .= '<li class="leaf"><a data="block-views-taxonomy-term-block-'.$value->tid.'" href="#">'.$value->name.'</a></li>';
 }
 $parent_menu .= '</ul></div></div></section>';

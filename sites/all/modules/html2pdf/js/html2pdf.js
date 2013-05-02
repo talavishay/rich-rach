@@ -21,6 +21,13 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
                         "media"     : jQuery(".webform-component-radios input:checked").val()
                     }
     };
+    if(parseInt(data.json.minutes) < 5 ){
+        data.json.minutes = "00";
+    } else {
+        if(parseInt(data.json.minutes) > 5  && parseInt(data.json.minutes) <=10 ){
+            data.json.minutes = "10";
+        }
+    }
     jQuery.ajax({
         "url"   : "/html2pdf/data/--remote-debugger-port=9000",
         "type"  : "POST",
