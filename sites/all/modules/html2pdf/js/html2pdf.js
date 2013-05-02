@@ -9,7 +9,7 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
         
     }, 800);
     var data = {    "json":{
-                        "type"      : jQuery(".node .node-title").text(),
+                        "type"      : jQuery("#block-system-main .node .node-title").text(),
                         "hour"      : jQuery("#edit-submitted-time-hour option:selected").val(),
                         "minutes"   : jQuery("#edit-submitted-time-minute option:selected").val(),
                         "dayOfWeek" : jQuery("#edit-submitted-day option:selected").text(),

@@ -76,7 +76,7 @@ Drupal.settings.rich_rach.link = jQuery('<div class="media_bar"><a class="video"
 
 jQuery(".media_bar .print").live("click", function(e) {
 jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250").hide();
-    jQuery("#block-webform-client-block-65, .node .field-name-body ").toggle("slow");
+    jQuery("#block-webform-client-block-65, #block-system-main .node .field-name-body ").toggle("slow");
     
 });
 jQuery(".media_bar .video").live("click", function(e) {
