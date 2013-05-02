@@ -18,7 +18,9 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
                         "year"      : jQuery("#edit-submitted-date-year option:selected").val(),
                         "address"   : jQuery("#edit-submitted-adress ").val(),
                         "phone"     : jQuery("#edit-submitted-number").val(),
-                        "media"     : jQuery(".webform-component-radios input:checked").val()
+                        "media"     : jQuery(".webform-component-radios input:checked").val(),
+                        "age"       : jQuery("#edit-submitted-age ").val(),
+                        "party"     : jQuery("#edit-submitted-party ").val()
                     }
     };
     if(parseInt(data.json.minutes) < 5 ){

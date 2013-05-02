@@ -48,11 +48,6 @@
             #table{
                 margin: 0 auto ;
             }
-             
-                        
-            div#frame p#type:before {
-                content: "הנך מוזמן לחגיגת ";
-            }
             div#text > p {
                 margin: 0 auto;
                 /*margin: 0 4cm;*/
@@ -69,7 +64,15 @@
                 max-width:10cm;
                 padding-right: .5cm;
             }
-            
+            div#frame #age:before {            
+                content: "ביום ההולדת ה-";
+            }
+            div#frame #age:after {
+                content: " ";
+            }
+            div#frame #party:before {
+                content: "של ";
+            }
             p, span{
                 color: #E50574;
                 font-size: 0.8cm;
@@ -97,7 +100,8 @@
     <body>
         <div id="frame">
             <div id="text">
-            <p id="type" >שוקולדת</p>
+                <p><span>הנך מוזמן לחגיגת</span><span id="dotted"> : </span><span id="type" >שוקולדת</span></p>
+            <p><span id="age" >12 </span><span id="party">אליהו עקאא</span></p>
             <p>
                 <span id="dayOfWeek">ראשון</span>, <span id="day">13</span>/<span id="month">4</span>/<span  id="year">2013</span>בשעה   <span id="hour">5</span>:<span id="minutes">40</span>
             </p>

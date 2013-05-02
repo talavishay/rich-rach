@@ -1159,15 +1159,9 @@ form#webform-client-form-65 {
 form#webform-client-form-65 .webform-component-adress{
     position:relative;
 }
-#edit-submitted-adress{
+#webform-client-form-65 input{
  max-width:   162px !important;
 }
-/*.phantom:hover{
-    transform: scale(2);
-    transform-origin: 17% 62% 0;
-}
-*/
-
 
 #block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow{
       background: url("/sites/all/modules/views/images/loading.gif") no-repeat scroll center center / 28% auto transparent;

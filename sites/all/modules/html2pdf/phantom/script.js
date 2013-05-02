@@ -55,6 +55,8 @@ page.open(input,function(success){
                 jQuery("#minutes").text(inner_args.minutes);
                 jQuery("#address").text(inner_args.address);
                 jQuery("#phone").text(inner_args.phone);
+                jQuery("#age").text(inner_args.age);
+                jQuery("#party").text(inner_args.party);
                 if(args.media === "mail"){
                     debugger;
                     jQuery("#frame").css({"margin":"0px","position" : "absolute", "top":"0px","left":"0px"});
