@@ -83,7 +83,7 @@ jQuery(".media_bar .video").live("click", function(e) {
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250, .field-name-field-youtube').show();
     jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-content').hide();
     if(jQuery("#block-views-829a587528abfc530ad5f75cdeaaf250 #close").length === 0 ){
-        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span class="close"></span></div>'));
+        jQuery(".view-nid-field-image-slideshow").prepend(jQuery('<div class="view-header"><span id="close"></span></div>'));
     }
     if( jQuery('.field-name-field-youtube:visible').length === 0){
         jQuery('#block-views-829a587528abfc530ad5f75cdeaaf250 .view-nid-field-image-slideshow').append(jQuery(Drupal.settings.rich_rach.youtube));

@@ -54,12 +54,14 @@ function rich_rach_module_implements_alter(&$implementations, $hook) {
     }
 }
 function rich_rach_preprocess_node(&$variables) {    
+    if ($variables['type'] !==  'blog' ) {
+        drupal_add_js(array('nid' => $variables["nid"]), 'setting');
+        drupal_add_library('system', 'drupal.ajax');            
+	}
     if ($variables['type'] ===  'blog' ) {
         _rich_rach_taxonomy_select_blog();
     }
     if ($variables['type'] ===  'birthday' ) {
-        drupal_add_library('system', 'drupal.ajax');            
-        drupal_add_js(array('nid' => $variables["nid"]), 'setting');
         $blocks = Array();
         $tax = taxonomy_get_tree(1);// 1 = choose term by  tax ID
         $parent_menu = '<section id="block-menu-menu-select" class="block block-menu block-menu-select block-menu-menu-select odd"><div class="block-inner clearfix"><h2 class="block-title">חפשו יום הולדת לפי<span id="block-menu-menu-select_toggle"></span></h2><div class="content clearfix"><ul class="menu">';

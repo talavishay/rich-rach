@@ -1059,7 +1059,7 @@ position: absolute;
     margin-top: 0.2em;
 
 }
-.facebook,#img_toggle, span#close ,#views_slideshow_controls_text_nid_field_image_slideshow-block_1 > span{display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../img/texttur.png);}
+.facebook,#img_toggle,span.close, span#close ,#views_slideshow_controls_text_nid_field_image_slideshow-block_1 > span{display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../img/texttur.png);}
 #views_slideshow_controls_text_nid_field_image_slideshow-block_1  a{
     color: transparent;
     opacity: 0;
@@ -1068,6 +1068,7 @@ position: absolute;
 #views_slideshow_controls_text_previous_nid_field_image_slideshow-block_1{width:40px; height:55px; background-position:  -214px -98px;margin:0 10px;}
 #views_slideshow_controls_text_pause_nid_field_image_slideshow-block_1{  display: none !important;}
 
+span.close,
 span#close {
     width:14px; height:14px; background-position: -214px -155px;
         position: absolute;
@@ -1075,6 +1076,11 @@ span#close {
         top: 4px;
         cursor: pointer;
 }
+#webform-client-form-65 #close,
+#webform-client-form-65 .close{
+	display:none;
+}
+
 span#close.x {
     position: relative;
 }
