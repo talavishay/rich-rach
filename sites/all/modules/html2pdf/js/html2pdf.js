@@ -39,7 +39,7 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
             try{
                 jQuery(".phantom").remove();
                 var phantom_page = jQuery.parseJSON(data);
-                console.log(phantom_page );
+                //console.log(phantom_page );
                 if(phantom_page.media === "print"){
 //                    window.open(phantom_page.url, '_blank');
                     
@@ -81,7 +81,7 @@ jQuery("#webform-client-form-65 input#edit-submit").unbind().live("click",functi
 //                    console.log(output_window );
                    
             }catch(e){
-                console.log(e);
+                //console.log(e);
                 
             }
 
