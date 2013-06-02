@@ -1,5 +1,5 @@
 jQuery(document).ready(function(){
-var div = '<div id="magnet_notice" style="margin-top: 20px;min-height: 130px;">הורים יקרים,   לפניכם תמונות שצולמו במהלך מסיבה של חברכם/חברתכם</div>';
+var div = jQuery("#block-block-9");
 	jQuery("div.node-mag").before(jQuery(div).prepend(jQuery("h2.node-title")));
     jQuery("[fid] a").each(function(i, val){
         jQuery(val).bind("click", function(e){
