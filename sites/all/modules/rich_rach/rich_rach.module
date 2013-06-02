@@ -5,7 +5,11 @@ function rich_rach_views_pre_render(&$view) {
     }
 }
 
-
+function rich_rach_form_alter(&$form, $form_state){
+    if($form["#form_id"] === "user_login_block"){
+        $form["name"]["#title"] = "שם משתמש";
+    };    
+}
 function rich_rach_init(){
     $arg = arg();
     if ($arg[0] == 'taxonomy' && $arg[1] == 'term'  && !isset($arg[3]) ){

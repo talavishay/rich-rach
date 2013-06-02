@@ -537,17 +537,21 @@ body.front aside#region-sidebar-second {
     position: static;
     width: 263px;
 }
+
+#block-user-login .block-inner ,
 #block-block-1 .block-inner {
     background-color: #1EAFD1;
 }
 #block-block-2 .block-inner,
-#block-block-1 .block-inner {    
+#block-block-1 .block-inner,
+#block-user-login .block-inner{    
     border-radius: 5px 5px 5px 5px;
     height: 169px;
     color: white;
     overflow: hidden;
 }
-#block-block-1 .block-inner {
+#block-block-1 .block-inner,
+#block-user-login .block-inner{
     background: linear-gradient(#1EAFD1 49%, #1BA7C8 52%, #1BA7C8 52%, #179EBE 53%, #179EBE 100%) repeat scroll 0 0 transparent;
  left: 5px;
     position: relative;
@@ -556,6 +560,8 @@ body.front aside#region-sidebar-second {
   left: 1px;
   position: relative;
 }
+
+#block-user-login form  div.form-item-name > * ,
 #block-block-1 form > div > * {
     display: inline-block;
 }
@@ -579,6 +585,7 @@ infinite;
 infinite;
 }*/
 
+#block-user-login  h2 ,
 #block-block-1 h2 {
        font-size: 18px;
     font-weight: normal;
@@ -588,6 +595,7 @@ infinite;
     padding-top: 5px;
 
 }
+#block-user-login  form label ,
 #block-block-1 form label {
    direction: rtl;
 float: right;
@@ -595,48 +603,84 @@ font-family: arial;
 font-size: 14px;
 margin-right: 5px;
 }
+#block-user-login  form #pass label ,
 #block-block-1 form #pass label {
 margin-right: 35px;
 }
+#block-user-login  form > p ,
 #block-block-1 form > p {
     bottom: 20px;
     left: 10px;
     margin: 0;
     position: absolute;
 }
+#block-user-login  form input,
 #block-block-1 form input{
          float: left;
     margin-left: 12px;
     margin-right: 7px;
     width: 85px;
 }
+#block-user-login  form input.form-submit,
 #block-block-1 form input.form-submit{
-    border-radius: 5px 5px 5px 5px;
-    direction: rtl;
-    height: 32px !important;
-    position: relative;
-    top: 11px;
-    width: 75px;
-    color: white;
-    border: medium none;
     background-repeat: no-repeat;
-    background-image: url(../img/login.png);
-    padding-top: 6px;
+border: medium none;
+border-radius: 5px 5px 5px 5px;
+color: transparent;
+direction: rtl;
+font-size: 0;
+height: 32px !important;
+padding-top: 6px;
+position: relative;
+top: 11px;
+width: 75px;
     
 }
+#block-user-login  .form-required{
+    display: none;
+}
+#block-user-login .form-item-name label:after {
+  content: ":";
+  position: absolute;
+}
+#block-user-login .form-item-pass label:after {
+  content: ":";
+  position: absolute;
+}
+#block-user-login .form-item-pass > label {
+  left: -35px;
+  position: relative;
+}
+#block-user-login  form input.form-submit:hover,
 #block-block-1 form input.form-submit:hover{
 background-position: 0% 100%  ;
 }
+#block-user-login form input[type=submit],
 #block-block-1 form input[type=submit]{
     background-image: url(../img/login.png);   
 }
+#block-user-login form ,
 #block-block-1 form {
     direction: ltr;
 }
 
-#block-block-1 form > #user{
-       margin-bottom: 20px;
+.front #block-user-login  form .item-list{
+    display:none;
 }
+#block-user-login #edit-actions{
+    display: inline;
+}
+#block-user-login  form .form-item,
+#block-block-1 form > #user{
+    margin-bottom: 20px;
+    height: 24px;
+}
+#block-user-login form .form-item-pass{
+    margin-bottom: 0px;
+}
+
+#block-user-login form > #user,
+#block-user-login form > #pass ,
 #block-block-1 form > #user,
 #block-block-1 form > #pass {
     height: 24px;
@@ -664,6 +708,7 @@ background-position: 0% 100%  ;
   margin-left: 0;
     margin-right: 7px;
 }
+#block-user-login .block-inner ,
 #block-block-1 .block-inner {
     width: 187px;   
 }
