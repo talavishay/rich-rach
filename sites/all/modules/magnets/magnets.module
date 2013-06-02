@@ -1,0 +1,124 @@
+<?php
+/**
+ * @file
+ * Code for the magnets feature.
+ */
+include_once 'magnets.features.inc';
+
+function magnets_preprocess_node(&$variables) {    
+    if ($variables["node"]->type ==  'mag' ) {
+        drupal_add_js(drupal_get_path("module", "magnets").'/js/magnet.js');
+    }
+}
+function magnets_menu(){
+ $items["post/%/node/%"] = array(
+         'page callback' => 'magnets_post_init',
+        'access callback' => 1,
+        'page arguments' => array(1,3,5),
+        'type' => MENU_CALLBACK,
+//        'delivery callback' => 'ajax_deliver',
+    );
+    return $items;
+}
+function magnets_post_init($fid, $nid ){
+    $file = file_load($fid);
+    $title = node_load($nid)->title;
+  $directory = 'public://magnets'.'/'.date('mdy').'/';
+    file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+    //Saves a file to the specified destination and creates a database entry.
+    $saved_file = file_save_data(file_get_contents( $file->uri), $directory.$file->filename, FILE_EXISTS_RENAME);
+
+    $_SESSION["data"] = array(
+      "filename" => file_create_url($saved_file->uri),
+        "title" => $title. ' - http://'.$_SERVER["HTTP_HOST"],
+        "destination" => "magnets"
+    );
+    // Extract the link from a given fboauth action.
+    $fb_link = fboauth_action_link_properties('magnets_photo_post');
+    // Extract the request url from a given fboauth action link, including the query parameters.
+    $fb_query_url = url($fb_link['href'], array('absolute' => TRUE, 'query' => $fb_link['query']));
+    // Redirect user to facebook for authorization.
+    drupal_goto($fb_query_url);
+} 
+function magnets_fboauth_actions() {
+   $actions['magnets_photo_post'] = array(
+    'title' => t('publish photos to Facebook'),
+    'callback' => 'magnets_fboauth_action_photo_post',
+    'permissions' => array(
+      'publish_stream', // Gets access to a user's photos.
+    ),
+  );
+  return $actions;
+}
+function magnets_fboauth_action_photo_post($app_id, $access_token) {
+    $url= "https://graph.facebook.com/me/photos";
+    $data = array(
+        'access_token' => $access_token,
+        'url' => $_SESSION["data"]["filename"],
+        'name' => $_SESSION["data"]["title"],
+    );
+ _post_($url, $data);
+if(isset($_SESSION["data"]["destination"])){
+  return '/'.$_SESSION["data"]["destination"];
+}else{
+	return '<front>';
+};
+}
+function _post_($url, $data) {
+  $response = drupal_http_request($url, array('data' => http_build_query($data, '', '&'), 'method' => 'POST'));
+  $content = json_decode($response->data, TRUE);
+  if (array_key_exists('id', $content) && $content['id']) {
+    //This message could have been displayed using rules at admin's discretion.
+    //However it seems more ethical to let the user know what action has been posted to his wall asa it is posted.
+    //A cleaner way to disable this message could be http://drupal.org/project/disable_messages, iff neccesary.
+    drupal_set_message(t('Activity posted on your facebook wall'), 'status');
+  }
+  else {
+    global $user;
+    // If access token has expired or not set.
+    if ($content['error']['code'] == '190') {
+      // Set a variable upon unsuccessful post attempt.
+      magnets_set_token_status($user->uid, '1');
+      $link = fboauth_action_link_properties('magnets_generate_token');
+      $token_url = url($link['href'], array('query' => $link['query']));
+      drupal_set_message(t("It seems your access token for Facebook has expired. !link to renew.", array('!link' => l('Click here', $token_url))), 'warning');
+    }
+    // If there is possibility of duplicate status message.
+    elseif ($content['error']['code'] == '506') {
+      drupal_set_message(t("This status was posted recently on your facebook wall. Duplicate message suspected."), 'warning');
+    }
+    // Facebook allows a maximum number of status updates in a day. In case the limit is reached, show a warning.
+    elseif ($content['error']['code'] == '341') {
+      drupal_set_message(t("Facebook feed action request limit reached. Your updates would no longer be posted on your Facebook wall today."), 'warning');
+    }
+    elseif (!magnets_get_token($user->uid) && fboauth_fbid_load($user->uid)) {
+      $link = fboauth_action_link_properties('magnets_generate_token');
+      $token_url = url($link['href'], array('query' => $link['query']));
+      drupal_set_message(t("It seems your access token for Facebook is not set. !link to generate.", array('!link' => l('Click here', $token_url))), 'warning');
+    }
+    // For all other errors.
+    else {
+      drupal_set_message(t("Something went wrong while posting update to your facebook wall. The error has been captured by watchdog."));
+    }
+
+  // Log error message to watchdog.
+  watchdog('f', 'Message: :msg<br />Type: :type<br />Code: :code<br />User: :uid', array(':msg' => $content['error']['message'], 'type' => $content['error']['type'], ':code' => $content['error']['code'], ':uid' => $user->uid), WATCHDOG_ERROR);
+
+  // Store the failed message and url in session.
+  $_SESSION['f-' . $user->uid . '-failed_update-message'] = $data;
+  $_SESSION['f-' . $user->uid . '-failed_update-url'] = $url;
+
+  }
+}
+/**
+ * Check if user has allowed posting to facebook on his behalf.
+ */
+function  magnets_profile_user_grant($uid) {
+  return db_query("SELECT user_grant FROM {f_user_tokens} WHERE uid = :uid", array(':uid' => $uid))->fetchField();
+}
+/**
+ * Get access token for the user.
+ */
+function  magnets_get_token($uid) {
+  return db_query("SELECT token FROM {facebook_rules_user_tokens} WHERE uid = :uid", array(':uid' => $uid))->fetchField();
+}
