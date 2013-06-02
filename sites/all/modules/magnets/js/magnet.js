@@ -16,7 +16,8 @@ var div = '<div id="magnet_notice" style="margin-top: 20px;min-height: 130px;">×
         });
 jQuery(".view-magnets .field-item").css({
     "float": "left",
-    "min-height": "115px"
+    "min-height": "170px",
+"position":"relative"
 });
 var about = jQuery(".node[about]").attr("about");
 
@@ -24,7 +25,11 @@ jQuery(' a.post').each(function(i, val){
     jQuery(val).attr("href", jQuery(val).attr("href") + about).css({
    "background": 'url("sites/all/themes/rich_rach/img/magnets-share.png") no-repeat scroll center center transparent',
     'color': 'transparent',
-   'font-size': "0px"
+   'font-size': "0px",
+   'position': "absolute", "bottom":"0px",
+   'font-size': "0px",
+	'height':'20px',
+   'width': "100%"
 });
 });
 
