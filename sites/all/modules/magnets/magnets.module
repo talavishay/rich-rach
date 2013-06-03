@@ -79,7 +79,7 @@ function _post_($url, $data) {
     if ($content['error']['code'] == '190') {
       // Set a variable upon unsuccessful post attempt.
       magnets_set_token_status($user->uid, '1');
-      $link = fboauth_action_link_properties('magnets_generate_token');
+      $link = fboauth_action_link_properties('facebook_rules_generate_token');
       $token_url = url($link['href'], array('query' => $link['query']));
       drupal_set_message(t("It seems your access token for Facebook has expired. !link to renew.", array('!link' => l('Click here', $token_url))), 'warning');
     }
@@ -92,7 +92,8 @@ function _post_($url, $data) {
       drupal_set_message(t("Facebook feed action request limit reached. Your updates would no longer be posted on your Facebook wall today."), 'warning');
     }
     elseif (!magnets_get_token($user->uid) && fboauth_fbid_load($user->uid)) {
-      $link = fboauth_action_link_properties('magnets_generate_token');
+            $link = fboauth_action_link_properties('facebook_rules_generate_token');
+
       $token_url = url($link['href'], array('query' => $link['query']));
       drupal_set_message(t("It seems your access token for Facebook is not set. !link to generate.", array('!link' => l('Click here', $token_url))), 'warning');
     }
