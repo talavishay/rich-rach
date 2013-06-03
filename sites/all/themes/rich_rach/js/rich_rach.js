@@ -1,4 +1,6 @@
 jQuery(document).ready(function() {
+var text = 'יש לשנות את שם המחבר <a href="/admin/people/create">למשתמש החדש</a>.הפוסט נמצא במצב לא פורסם על מנת להיות מוגן משאר הגולשים.';
+jQuery("#mag-node-form").prepend(jQuery('<div></div>').append(text));
 Drupal.settings.rich_rach = {};
 // BIRTHDAY MENU -- #block-menu-menu-select
 if(typeof(Drupal.settings.views_get_view) !== "undefined"){

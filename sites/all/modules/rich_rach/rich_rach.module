@@ -6,6 +6,9 @@ function rich_rach_views_pre_render(&$view) {
 }
 
 function rich_rach_form_alter(&$form, $form_state){
+    if($form["#form_id"] === "user_register_form"){
+        drupal_add_js(drupal_get_path("module", "rich_rach").'/js/user_register_form.js');
+    }
     if($form["#form_id"] === "user_login_block"){
         $form["name"]["#title"] = "שם משתמש";
     };    

@@ -31,7 +31,7 @@ function magnets_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 150,
+          'width' => 110,
           'height' => '',
           'upscale' => 0,
         ),
